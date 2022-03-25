@@ -3,6 +3,8 @@ class Location < ActiveRecord::Base
   has_many :people
 
   def self.in_region(region)
-    all
+    Location.joins(:region).merge(Region.by_name(region))
   end
+
+  
 end
